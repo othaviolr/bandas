@@ -1,13 +1,28 @@
 package com.othavio.bandas.domain.entity;
 
+import jakarta.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "bandas")
 public class Banda {
-    private final UUID id;
-    private final String nome;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID) // Geração automática de UUID no Hibernate 6+
+    private UUID id;
+
+    @Column(nullable = false)
+    private String nome;
+
+    protected Banda() {
+    }
 
     public Banda(String nome) {
-        this.id = UUID.randomUUID();
+        this.nome = nome;
+    }
+
+    public Banda(UUID id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 

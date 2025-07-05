@@ -1,7 +1,6 @@
 package com.othavio.bandas.infrastructure.persistence;
 
 import jakarta.persistence.*;
-
 import java.util.UUID;
 
 @Entity
@@ -9,13 +8,24 @@ import java.util.UUID;
 public class BandaJpaEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID) // Geração automática de UUID no Hibernate 6+
     private UUID id;
 
     @Column(nullable = false)
     private String nome;
 
-    // Getters e setters
+    public BandaJpaEntity() {
+    }
+
+    public BandaJpaEntity(String nome) {
+        this.nome = nome;
+    }
+
+    public BandaJpaEntity(UUID id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public UUID getId() {
         return id;
     }

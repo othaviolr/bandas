@@ -15,6 +15,6 @@ public class CadastrarBandaUseCase {
 
     public Banda executar(String nome) {
         Banda banda = new Banda(nome);
-        return bandaRepository.salvar(banda);
+        return bandaRepository.save(banda);
     }
 }
